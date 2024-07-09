@@ -2,6 +2,7 @@
 body {
     font-family: Arial, sans-serif;
     text-align: center;
+    color: black;
 }
 
 button {
@@ -12,8 +13,8 @@ button {
 }
 
 .number {
-    color: rgb(19, 193, 236);
     display: inline-block;
+    font-weight: bold;
     width: 30px;
     height: 30px;
     line-height: 30px;
@@ -22,9 +23,9 @@ button {
     text-align: center;
     cursor: pointer;
 }
-.red { background-color: red; }
-.yellow { background-color: yellow; }
-.green { background-color: green; }
-.blue { background-color: blue; }
+.red { background-color: rgb(247, 42, 42); }
+.yellow { background-color: rgb(240, 236, 5); }
+.green { background-color: rgb(40, 226, 3); }
+.blue { background-color: rgb(7, 200, 235); }
 .selected { border: 2px solid black; }
 
