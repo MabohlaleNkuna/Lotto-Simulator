@@ -101,7 +101,7 @@ END IF
 IF user selects "View Ticket History" THEN
     RETRIEVE user's past tickets and draw results from localStorage
     DISPLAY ticket history
-END IF
+END IF;
 
 #### Admin - View Draw History
 IF admin selects "View Draw History" THEN
