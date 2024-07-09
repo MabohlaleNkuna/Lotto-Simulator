@@ -3,33 +3,18 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Lotto Simulator</title>
-    <link rel="stylesheet" href="css/style.css">
+    <title>User Dashboard</title>
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <header>
-        <h1>Lotto Simulator</h1>
-    </header>
-
-    <main>
-        <section id="admin-section">
-            <!-- Admin interface elements -->
-        </section>
-
-        <section id="user-section">
-            <!-- User interface elements -->
-        </section>
-
-        <section id="notifications">
-            <!-- Notifications area -->
-        </section>
-
-        <section id="results">
-            <!-- Display ticket cost, draw results, etc. -->
-        </section>
-    </main>
-    <script src="js/admin.js"></script>
-    <script src="js/user.js"></script>
-    <script src="js/lotto.js"></script>
+    <h1>Dashboard</h1>
+    <div id="numberSelection">
+        <p>Select 6 numbers</p>
+        <div id="numbers"></div>
+    </div>
+    <button onclick="submitNumbers()">Submit</button>
+    <div id="ticketInfo"></div>
+    <script src="user.js"></script>
 </body>
 </html>
+
