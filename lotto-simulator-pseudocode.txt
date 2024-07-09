@@ -1,0 +1,119 @@
+### Pseudocode for Lotto Simulator
+
+#### Initial Setup
+START
+DISPLAY "Login Screen" with options "Admin" and "User"
+
+#### Admin Login
+IF user selects "Admin" THEN
+    PROMPT "Enter Admin Credentials"
+    IF credentials are valid THEN
+        DISPLAY "Admin Dashboard" with options:
+            1. "Simulate Draw"
+            2. "View Winning Tickets"
+            3. "View Draw History"
+    ELSE
+        DISPLAY "Invalid credentials. Try again."
+    END IF
+END IF
+
+#### User Login/Registration
+IF user selects "User" THEN
+    PROMPT "Enter User Credentials" OR "Register New User"
+    IF credentials are valid THEN
+        DISPLAY "User Dashboard" with options:
+            1. "Select Numbers"
+            2. "View Ticket History"
+            3. "View Notifications"
+    ELSE
+        DISPLAY "Invalid credentials. Try again."
+    END IF
+END IF
+
+#### Selecting Numbers
+DISPLAY 52 number buttons
+WHILE user has not selected 6 numbers
+    PROMPT user to select a number
+    IF number is valid THEN
+        ADD number to selected numbers
+        HIGHLIGHT number with appropriate color:
+            Red: 1-13
+            Yellow: 14-25
+            Green: 26-37
+            Blue: 38-52
+    ELSE
+        DISPLAY "Number already selected or invalid. Choose another number."
+    END IF
+END WHILE
+
+PROMPT "How many boards do you want to enter with?"
+FOR each board
+    DISPLAY number selection UI
+    PROMPT user to select numbers for the board
+    ADD selected numbers to board
+END FOR
+
+PROMPT "Do you want to use the same numbers for Lotto Plus 1 and Lotto Plus 2? (Yes/No)"
+IF user selects "Yes" THEN
+    INCLUDE boards in Lotto Plus 1 and Lotto Plus 2
+END IF
+
+CALCULATE total cost based on selection:
+    Lotto board: R5.00
+    Lotto Plus 1: R2.50 per board
+    Lotto Plus 2: R2.50 per board
+
+DISPLAY total cost
+PROMPT user to confirm purchase
+IF user confirms THEN
+    PROCEED with ticket generation
+ELSE
+    CANCEL purchase
+END IF
+
+#### Ticket Generation
+ASSIGN unique identifier to each ticket
+ALLOCATE boards to tickets (max 10 boards per ticket)
+SAVE ticket details with purchase date
+STORE selected numbers, ticket details, and purchase date in localStorage
+
+#### Admin - Simulate Draw
+IF admin selects "Simulate Draw" THEN
+    GENERATE 6 random winning numbers from 1 to 52
+    SAVE draw date and winning numbers
+    FOR each user ticket
+        CHECK for matching numbers (3 or more)
+        IF ticket is a winner THEN
+            SAVE winning ticket details
+        END IF
+    END FOR
+    NOTIFY users if their ticket won
+    ALERT admin with the number of winning tickets
+END IF
+
+#### User - View Notifications
+IF user logs in THEN
+    CHECK for winning notifications
+    DISPLAY notification if user has won
+END IF
+
+#### User - View Ticket History
+IF user selects "View Ticket History" THEN
+    RETRIEVE user's past tickets and draw results from localStorage
+    DISPLAY ticket history
+END IF
+
+#### Admin - View Draw History
+IF admin selects "View Draw History" THEN
+    RETRIEVE all past draw results and winning tickets from localStorage
+    DISPLAY draw history
+END IF
+
+#### Additional Features
+ENSURE the UI adjusts for different screen sizes and resolutions
+VALIDATE all user inputs and handle errors gracefully
+TEST all functionalities to ensure they work as expected
+DOCUMENT code and provide explanations for major functions and logic
+
+#### End
+END
