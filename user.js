@@ -39,4 +39,8 @@ function submitNumbers() {
     localStorage.setItem('ticket', JSON.stringify(ticket));
     document.getElementById('ticketInfo').innerText = 'Your ticket: ' + selectedNumbers.join(', ');
 }
+// Function to switch between User and Admin roles
+function switchRole() {
+    window.location.href = "admin.html";
+}
 

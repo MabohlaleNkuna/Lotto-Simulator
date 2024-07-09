@@ -3,18 +3,30 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>User Dashboard</title>
+    <title>Lotto Simulator</title>
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <h1>Dashboard</h1>
-    <div id="numberSelection">
-        <p>Select 6 numbers</p>
-        <div id="numbers"></div>
+    <div id="roleSelection">
+        <h1>Welcome to Lotto Simulator</h1>
+        <h2>Please select your role</h2>
+        <button onclick="showUserInterface()">User</button>
+        <button onclick="showAdminInterface()">Admin</button>
     </div>
-    <button onclick="submitNumbers()">Submit</button>
-    <div id="ticketInfo"></div>
+
+    <div id="userDashboard" style="display: none;">
+        <h1>User Dashboard - Lotto Simulator</h1>
+        <div id="numbers">
+            <!-- Number selection interface -->
+        </div>
+        <button onclick="submitNumbers()">Submit Numbers</button>
+        <div id="ticketInfo">
+            <!-- Ticket information display -->
+        </div>
+        <button onclick="showRoleSelection()">↶</button>
+    </div>
+
+    <script src="main.js"></script>
     <script src="user.js"></script>
 </body>
 </html>
-
