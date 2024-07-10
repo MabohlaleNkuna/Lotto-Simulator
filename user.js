@@ -1,32 +1,31 @@
-let boards = [];
-const maxNumbers = 6;
-
 function generateBoards() {
-    const boardCount = parseInt(document.getElementById('boardCount').value, 10);
     const boardContainer = document.getElementById('boardContainer');
     boardContainer.innerHTML = '';
 
-    if (boardCount >= 1 && boardCount <= 10) {
-        localStorage.setItem('boardCount', boardCount.toString());
-        alert(`You have chosen ${boardCount} board(s)`);
+    for (let i = 0; i < 10; i++) { // Example: Generate 10 boards
+        const boardDiv = document.createElement('div');
+        boardDiv.className = 'board';
 
-        for (let i = 0; i < boardCount; i++) {
-            const boardDiv = document.createElement('div');
-            boardDiv.className = 'board';
+        for (let j = 1; j <= 52; j++) {
+            const numberElement = document.createElement('div');
+            numberElement.className = 'number';
 
-            for (let j = 1; j <= 52; j++) {
-                const numberElement = document.createElement('div');
-                numberElement.className = 'number';
-                numberElement.textContent = j;
-                numberElement.onclick = () => selectNumber(i, j);
-                boardDiv.appendChild(numberElement);
+            // Assign color classes based on number ranges
+            if (j >= 1 && j <= 13) {
+                numberElement.classList.add('red');
+            } else if (j >= 14 && j <= 25) {
+                numberElement.classList.add('yellow');
+            } else if (j >= 26 && j <= 37) {
+                numberElement.classList.add('green');
+            } else {
+                numberElement.classList.add('blue');
             }
 
-            boards.push({ id: i, selectedNumbers: [] });
-            boardContainer.appendChild(boardDiv);
+            numberElement.textContent = j;
+            boardDiv.appendChild(numberElement);
         }
-    } else {
-        alert('Please select a valid number of boards between 1 and 10');
+
+        boardContainer.appendChild(boardDiv);
     }
 }
 
