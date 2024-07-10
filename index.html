@@ -4,146 +4,49 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Lotto Simulator</title>
-
-    <style>
-   
-   html, body {
-    margin: 0;
-    padding: 0;
-    font-family: sans-serif;
-    font-size: 16px;
-    color: #000000;
-  }
-  *, *::after, *::before {
-      box-sizing: border-box;
-  }
-  
-  div.wrapper {
-      padding: 3rem;
-      width: 100%;
-      max-width: 1000px;
-      margin: auto;
-    
-    @media (max-width: 576px) {
-      div.wrapper {
-          padding: 3rem 1rem;
-      }
-    }
-  }
-  
-  div.lotto-wrapper {
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      align-items: center;
-  }
-  
-  .lotto {
-      display: flex;
-      gap: 1rem;
-      flex-wrap: wrap;
-      justify-content: center;
-    
-      & > span {
-        width: 60px;
-        height: 60px;
-        background-color: #00000020;
-        display: flex;
-        border-radius: 50%;
-        justify-content: center;
-        align-items: center;
-        font-weight: 700;
-        font-size: 1.2rem;
-        
-        &:last-child {
-          background-color: #000000;
-          color: #fff;
-          margin-left: 1rem;
-          margin-right: 1rem;
-        }
-        
-        @media (max-width: 576px) {
-          & {
-              width: 50px;
-              height: 50px;
-              font-size: 1rem;
-          }
-        }
-    }
-  }
-  
-  .btn-wrapper {
-    padding-top: 2rem;
-    padding-bottom: 1rem;
-    display: flex;
-    gap: .5rem;
-  }
-  
-  button {
-    padding: 1rem;
-    border: none;
-    background-color: #000000;
-    color: #fff;
-    font-weight: 700;
-    border-radius: 5px;
-    cursor: pointer;
-    transition: all 0.3s ease;
-    font-size: 1rem;  
-    &:hover {
-      background-color: #00000080;
-    }
-  }
-  
-  .beer {
-    display: block;
-    padding: 1rem;
-    border: none;
-    font-weight: 700;
-    border-radius: 5px;
-    cursor: pointer;
-    transition: all 0.3s ease;
-    text-decoration: none;
-    &:hover {
-      background-color: #eab308;
-    }
-  }
-  
-  .spana{
-    background-color: red !important;
-  }
-  
-  .spanb{
-    background-color: yellow !important ;
-  }
-  
-  .spanc{
-    background-color: rgb(73, 242, 36) !important;
-  }
-  
-  .spand{
-    background-color: rgb(44, 190, 243) !important;
-    color:#000000!important;
-  }
-    </style>
-    <script src="./main.js"></script>
+    <link rel="stylesheet" href="style.css">
 </head>
-
 <body>
-
-    <div class="wrapper">   
-        <div class="lotto" id="lotto"> </div>
-        <br><br>
-      <hr>
-        <h5>Place Lotto Bets</h5>  
-
-        <div class="" id="lottoBets"> </div>
-    </div>
-     
-      <div style="text-align-last: center !important;">
-        <button onclick="addNum()">BET NOW !!</button>
-  </div>
-  
+    <div id="roleSelection">
+        <h1>Welcome to Lotto Simulator</h1>
+        <h2>Please select your role</h2>
+        <button onclick="showLoginInterface('user')">User</button>
+        <button onclick="showLoginInterface('admin')">Admin</button>
     </div>
 
+    <div id="loginForm" style="display: none;">
+        <h1>Login</h1>
+        <input type="text" id="username" placeholder="Username">
+        <input type="password" id="password" placeholder="Password">
+        <button onclick="login()">Login</button>
+        <button onclick="showRoleSelection()">Back to Role Selection</button>
+    </div>
+
+    <div id="userDashboard" style="display: none;">
+        <h1>User Dashboard - Lotto Simulator</h1>
+        <div id="numberSelection">
+            <h2>Select 6 numbers from 1 to 52</h2>
+            <div id="numbers"></div>
+            <button onclick="submitNumbers()">Submit Numbers</button>
+        </div>
+        <div id="boardSelection" style="display: none;">
+            <h2>Select number of boards (1-10)</h2>
+            <input type="number" id="boardCount" min="1" max="10" value="1">
+            <button onclick="generateBoards()">Generate Boards</button>
+        </div>
+        <div id="ticketInfo"></div>
+        <button onclick="showRoleSelection()">Back to Role Selection</button>
+    </div>
+
+    <div id="adminDashboard" style="display: none;">
+        <h1>Admin Dashboard - Lotto Simulator</h1>
+        <button onclick="simulateDraw()">Simulate Draw</button>
+        <div id="drawResults"></div>
+        <button onclick="showRoleSelection()">Back to Role Selection</button>
+    </div>
+
+    <script src="main.js"></script>
+    <script src="user.js"></script>
+    <script src="admin.js"></script>
 </body>
 </html>

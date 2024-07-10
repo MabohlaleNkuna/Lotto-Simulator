@@ -1,104 +1,28 @@
-html, body {
-    margin: 0;
-    padding: 0;
-    font-family: sans-serif;
-    font-size: 16px;
-    color: #000000;
-  }
-  *, *::after, *::before {
-      box-sizing: border-box;
-  }
-  
-  div.wrapper {
-      padding: 3rem;
-      width: 100%;
-      max-width: 1000px;
-      margin: auto;
-    
-    @media (max-width: 576px) {
-      div.wrapper {
-          padding: 3rem 1rem;
-      }
-    }
-  }
-  
-  div.lotto-wrapper {
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      align-items: center;
-  }
-  
-  div#lotto {
-      display: flex;
-      gap: 1rem;
-      flex-wrap: wrap;
-      justify-content: center;
-    
-      & > span {
-        width: 60px;
-        height: 60px;
-        background-color: #00000020;
-        display: flex;
-        border-radius: 50%;
-        justify-content: center;
-        align-items: center;
-        font-weight: 700;
-        font-size: 1.2rem;
-        
-        &:last-child {
-          background-color: #000000;
-          color: #fff;
-          margin-left: 1rem;
-          margin-right: 1rem;
-        }
-        
-        @media (max-width: 576px) {
-          & {
-              width: 50px;
-              height: 50px;
-              font-size: 1rem;
-          }
-        }
-    }
-  }
-  
-  .btn-wrapper {
-    padding-top: 2rem;
-    padding-bottom: 1rem;
+/* style.css */
+
+body {
+    font-family: Arial, sans-serif;
+}
+
+#numbers {
     display: flex;
-    gap: .5rem;
-  }
-  
-  button {
-    padding: 1rem;
-    border: none;
-    background-color: #000000;
-    color: #fff;
-    font-weight: 700;
-    border-radius: 5px;
+    flex-wrap: wrap;
+    gap: 10px;
+}
+
+.number {
+    width: 30px;
+    height: 30px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: 1px solid #000;
+    border-radius: 50%;
     cursor: pointer;
-    transition: all 0.3s ease;
-    font-size: 1rem;
-  
-    &:hover {
-      background-color: #00000080;
-    }
-  }
-  
-  
-  .spana{
-    background-color: red !important;
-  }
-  
-  .spanb{
-    background-color: yellow !important ;
-  }
-  
-  .spanc{
-    background-color: green !important;
-  }
-  
-  .spand{
-    background-color: blue !important;
-  }
+}
+
+.red { background-color: red; }
+.yellow { background-color: yellow; }
+.green { background-color: green; }
+.blue { background-color: blue; }
+.selected { border: 2px solid black; }

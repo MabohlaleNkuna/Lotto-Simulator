@@ -1,3 +1,5 @@
+// user.js
+
 let selectedNumbers = [];
 
 function generateNumbers() {
@@ -57,9 +59,24 @@ function updateNumberSelection() {
 function submitNumbers() {
     if (selectedNumbers.length === 6) {
         localStorage.setItem('selectedNumbers', JSON.stringify(selectedNumbers));
-        alert('Numbers submitted!');
-        // Add further functionality for ticket creation here
+        document.getElementById('numberSelection').style.display = 'none';
+        document.getElementById('boardSelection').style.display = 'block';
     } else {
         alert('Please select 6 numbers');
     }
 }
+
+function generateBoards() {
+    const boardCount = parseInt(document.getElementById('boardCount').value, 10);
+    let boardSize =5;
+    if (boardCount >= 1 && boardCount <= 10) {
+        localStorage.setItem('boardCount', boardCount);
+        alert(`You have chosen ${boardCount} board(s)`);
+
+    } else {
+        alert('Please select a valid number of boards between 1 and 10');
+    }
+}
+
+// Call generateNumbers on page load
+window.onload = generateNumbers;
