@@ -2,57 +2,101 @@
 
 body {
     font-family: Arial, sans-serif;
+    background-color: #f0f0f0;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
 }
 
-#numbers {
+.container {
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    text-align: center;
+    max-width: 600px;
+    width: 100%;
+    display: none;
+}
+
+.container h1 {
+    color: #333;
+}
+
+.container h2 {
+    color: #666;
+}
+
+.container button {
+    margin-top: 10px;
+    padding: 10px 20px;
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.container button:hover {
+    background-color: #45a049;
+}
+
+.board-selection {
+    margin-top: 20px;
+}
+
+.board {
     display: flex;
     flex-wrap: wrap;
-    gap: 10px;
+    justify-content: center;
+    margin-bottom: 20px;
 }
 
 .number {
-    font-weight: bold;
-    width: 30px;
-    height: 30px;
+    width: 40px;
+    height: 40px;
     display: flex;
     align-items: center;
     justify-content: center;
-    border: 2px solid #000;
+    border: 2px solid #ccc;
     border-radius: 50%;
+    margin: 5px;
     cursor: pointer;
+    font-size: 18px;
 }
 
-.red { background-color: rgb(252, 7, 7); }
-.yellow { background-color: rgb(247, 247, 22); }
-.green { background-color: rgb(39, 245, 39); }
-.blue { background-color: rgb(11, 245, 245); }
-.selected { border: 5px solid rgb(248, 4, 138); }
+.red { background-color: #FFCDD2; color: #D32F2F; }
+.yellow { background-color: #FFF9C4; color: #FBC02D; }
+.green { background-color: #C8E6C9; color: #388E3C; }
+.blue { background-color: #BBDEFB; color: #1976D2; }
 
-.board {
+.selected {
+    border-color: #E91E63;
+}
+
+.tickets-container {
     margin-top: 20px;
-    display: flex;
-    flex-wrap: wrap;
-    
-    gap: 10px;
+    text-align: left;
 }
-/*
-.numberDiv {
-    width: 30px;
-    height: 30px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    border: 1px solid #000;
-    border-radius: 50%;
-    cursor: pointer;
-   
-  
-}*/
 
-.column {
-    display: flex;
-    flex-direction: column;
-    gap: 5px;
-    margin-right: 10px;
+.ticket {
+    background-color: #f0f0f0;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    padding: 10px;
+    margin-bottom: 10px;
 }
-*
+
+.draw-results {
+    margin-top: 20px;
+    text-align: left;
+}
+
+#userDashboard {
+    margin-left: 200px;
+    margin-right: 200px;
+
+}

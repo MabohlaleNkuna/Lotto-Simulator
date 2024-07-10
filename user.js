@@ -1,5 +1,3 @@
-// user.js
-
 let boards = [];
 const maxNumbers = 6;
 
@@ -9,29 +7,16 @@ function generateBoards() {
     boardContainer.innerHTML = '';
 
     if (boardCount >= 1 && boardCount <= 10) {
-        localStorage.setItem('boardCount', boardCount);
+        localStorage.setItem('boardCount', boardCount.toString());
         alert(`You have chosen ${boardCount} board(s)`);
 
         for (let i = 0; i < boardCount; i++) {
             const boardDiv = document.createElement('div');
             boardDiv.className = 'board';
-            boardDiv.id = `board-${i}`;
 
             for (let j = 1; j <= 52; j++) {
                 const numberElement = document.createElement('div');
                 numberElement.className = 'number';
-                numberElement.classList.add("numberDiv")
-
-                if (j >= 1 && j <= 13) {
-                    numberElement.classList.add('red');
-                } else if (j >= 14 && j <= 25) {
-                    numberElement.classList.add('yellow');
-                } else if (j >= 26 && j <= 37) {
-                    numberElement.classList.add('green');
-                } else {
-                    numberElement.classList.add('blue');
-                }
-
                 numberElement.textContent = j;
                 numberElement.onclick = () => selectNumber(i, j);
                 boardDiv.appendChild(numberElement);
@@ -62,7 +47,7 @@ function selectNumber(boardIndex, number) {
 }
 
 function updateNumberSelection(boardIndex) {
-    const boardDiv = document.getElementById(`board-${boardIndex}`);
+    const boardDiv = document.getElementsByClassName('board')[boardIndex];
     const numberElements = boardDiv.getElementsByClassName('number');
 
     for (let i = 0; i < numberElements.length; i++) {
@@ -103,11 +88,91 @@ function submitBoards() {
 
     if (validSelection) {
         calculateCost();
+        saveTicket();
+        displayTickets();
     } else {
         alert('Please select 6 numbers on each board');
     }
 }
 
-window.onload = function() {
-    document.getElementById('boardSelection').style.display = 'block';
+function saveTicket() {
+    const boardCount = parseInt(localStorage.getItem('boardCount'), 10);
+    const tickets = JSON.parse(localStorage.getItem('tickets')) || [];
+    const currentDate = new Date().toLocaleDateString();
+    const ticketId = tickets.length + 1;
+
+    boards.forEach(board => {
+        const ticket = {
+            ticketId: ticketId,
+            date: currentDate,
+            selectedNumbers: board.selectedNumbers
+        };
+        tickets.push(ticket);
+    });
+
+    localStorage.setItem('tickets', JSON.stringify(tickets));
 }
+
+function displayTickets() {
+    const tickets = JSON.parse(localStorage.getItem('tickets')) || [];
+    const ticketContainer = document.getElementById('ticketContainer');
+    ticketContainer.innerHTML = '';
+
+    tickets.forEach(ticket => {
+        const ticketDiv = document.createElement('div');
+        ticketDiv.className = 'ticket';
+        ticketDiv.innerHTML = `
+            <p>Ticket ID: ${ticket.ticketId}</p>
+            <p>Date: ${ticket.date}</p>
+            <p>Numbers: ${ticket.selectedNumbers.join(', ')}</p>
+        `;
+        ticketContainer.appendChild(ticketDiv);
+    });
+
+    ticketContainer.style.display = 'block';
+}
+
+function checkNotifications() {
+    const notifications = JSON.parse(localStorage.getItem('notifications')) || [];
+    if (notifications.length > 0) {
+        alert(`You have ${notifications.length} new notification(s).`);
+    } else {
+        alert('No new notifications.');
+    }
+}
+
+function showRoleSelection() {
+    document.getElementById('roleSelection').style.display = 'block';
+    document.getElementById('loginForm').style.display = 'none';
+    document.getElementById('userDashboard').style.display = 'none';
+    document.getElementById('adminDashboard').style.display = 'none';
+}
+
+function showLoginInterface(role) {
+    localStorage.setItem('role', role);
+    document.getElementById('roleSelection').style.display = 'none';
+    document.getElementById('loginForm').style.display = 'block';
+}
+
+function login() {
+    const username = document.getElementById('username').value;
+    const password = document.getElementById('password').value;
+    const role = localStorage.getItem('role');
+
+    if (username && password) {
+        localStorage.setItem('username', username);
+        localStorage.setItem('password', password);
+        if (role === 'user') {
+            document.getElementById('loginForm').style.display = 'none';
+            document.getElementById('userDashboard').style.display = 'block';
+        } else if (role === 'admin') {
+            document.getElementById('loginForm').style.display = 'none';
+            document.getElementById('adminDashboard').style.display = 'block';
+        }
+    } else {
+        alert('Please enter valid credentials');
+    }
+}
+
+// Initial call to show role selection on page load
+window.onload = showRoleSelection;
