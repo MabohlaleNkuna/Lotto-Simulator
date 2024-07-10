@@ -20,6 +20,7 @@ function generateBoards() {
             for (let j = 1; j <= 52; j++) {
                 const numberElement = document.createElement('div');
                 numberElement.className = 'number';
+                numberElement.classList.add("numberDiv")
 
                 if (j >= 1 && j <= 13) {
                     numberElement.classList.add('red');
@@ -76,12 +77,32 @@ function updateNumberSelection(boardIndex) {
     }
 }
 
+function calculateCost() {
+    const boardCount = parseInt(localStorage.getItem('boardCount'), 10);
+    const mainLottoCost = boardCount * 5;
+
+    const addLottoPlus1 = confirm('Do you want to add Lotto Plus 1 for R2.50 per board?');
+    const addLottoPlus2 = confirm('Do you want to add Lotto Plus 2 for R2.50 per board?');
+
+    let totalCost = mainLottoCost;
+
+    if (addLottoPlus1) {
+        totalCost += boardCount * 2.5;
+    }
+
+    if (addLottoPlus2) {
+        totalCost += boardCount * 2.5;
+    }
+
+    alert(`Total cost: R${totalCost.toFixed(2)}`);
+    localStorage.setItem('boards', JSON.stringify(boards));
+}
+
 function submitBoards() {
     const validSelection = boards.every(board => board.selectedNumbers.length === maxNumbers);
 
     if (validSelection) {
-        localStorage.setItem('boards', JSON.stringify(boards));
-        alert('Boards submitted successfully');
+        calculateCost();
     } else {
         alert('Please select 6 numbers on each board');
     }
