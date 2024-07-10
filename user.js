@@ -1,43 +1,82 @@
-document.addEventListener('DOMContentLoaded', () => {
-    const numbersDiv = document.getElementById('numbers');
-    for (let num = 1; num <= 52; num++) {
-        const numberDiv = document.createElement('div');
-        numberDiv.classList.add('number');
-        numberDiv.innerText = num;
-        if (num <= 13) {
-            numberDiv.classList.add('red');
-        } else if (num <= 25) {
-            numberDiv.classList.add('yellow');
-        } else if (num <= 37) {
-            numberDiv.classList.add('green');
+// user.js
+
+let selectedNumbers = [];
+
+function generateNumbers() {
+    const numbersContainer = document.getElementById('numbers');
+    numbersContainer.innerHTML = '';
+
+    for (let i = 1; i <= 52; i++) {
+        const numberElement = document.createElement('div');
+        numberElement.className = 'number';
+
+        if (i >= 1 && i <= 13) {
+            numberElement.classList.add('red');
+        } else if (i >= 14 && i <= 25) {
+            numberElement.classList.add('yellow');
+        } else if (i >= 26 && i <= 37) {
+            numberElement.classList.add('green');
         } else {
-            numberDiv.classList.add('blue');
+            numberElement.classList.add('blue');
         }
-        numberDiv.addEventListener('click', () => {
-            numberDiv.classList.toggle('selected');
-        });
-        numbersDiv.appendChild(numberDiv);
-    }
-});
 
-function submitNumbers() {
-    const selectedNumbers = [];
-    const numberDivs = document.querySelectorAll('.number.selected');
-    for (let i = 0; i < numberDivs.length; i++) {
-        selectedNumbers.push(parseInt(numberDivs[i].innerText));
+        numberElement.textContent = i;
+        numberElement.onclick = () => selectNumber(i);
+        numbersContainer.appendChild(numberElement);
     }
-
-    if (selectedNumbers.length !== 6) {
-        alert('Please select only 6 numbers from 1 to 52.');
-        return;
-    }
-
-    const ticket = {
-        numbers: selectedNumbers,
-        date: new Date().toISOString()
-    };
-    localStorage.setItem('ticket', JSON.stringify(ticket));
-    document.getElementById('ticketInfo').innerText = 'Your ticket: ' + selectedNumbers.join(', ');
 }
 
+function selectNumber(number) {
+    if (selectedNumbers.includes(number)) {
+        selectedNumbers = selectedNumbers.filter(num => num !== number);
+    } else {
+        if (selectedNumbers.length < 6) {
+            selectedNumbers.push(number);
+        } else {
+            alert('You can only select 6 numbers');
+        }
+    }
 
+    updateNumberSelection();
+}
+
+function updateNumberSelection() {
+    const numbersContainer = document.getElementById('numbers');
+    const numberElements = numbersContainer.getElementsByClassName('number');
+
+    for (let i = 0; i < numberElements.length; i++) {
+        const numberElement = numberElements[i];
+        const number = parseInt(numberElement.textContent, 10);
+
+        if (selectedNumbers.includes(number)) {
+            numberElement.classList.add('selected');
+        } else {
+            numberElement.classList.remove('selected');
+        }
+    }
+}
+
+function submitNumbers() {
+    if (selectedNumbers.length === 6) {
+        localStorage.setItem('selectedNumbers', JSON.stringify(selectedNumbers));
+        document.getElementById('numberSelection').style.display = 'none';
+        document.getElementById('boardSelection').style.display = 'block';
+    } else {
+        alert('Please select 6 numbers');
+    }
+}
+
+function generateBoards() {
+    const boardCount = parseInt(document.getElementById('boardCount').value, 10);
+    let boardSize =5;
+    if (boardCount >= 1 && boardCount <= 10) {
+        localStorage.setItem('boardCount', boardCount);
+        alert(`You have chosen ${boardCount} board(s)`);
+
+    } else {
+        alert('Please select a valid number of boards between 1 and 10');
+    }
+}
+
+// Call generateNumbers on page load
+window.onload = generateNumbers;

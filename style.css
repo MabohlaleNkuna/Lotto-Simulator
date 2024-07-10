@@ -1,31 +1,28 @@
+/* style.css */
 
 body {
     font-family: Arial, sans-serif;
-    text-align: center;
-    color: black;
 }
 
-button {
-    padding: 10px 20px;
-    margin: 20px;
-    font-size: 25px;
-    font-weight: bold;
+#numbers {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
 }
 
 .number {
-    display: inline-block;
-    font-weight: bold;
     width: 30px;
     height: 30px;
-    line-height: 30px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: 1px solid #000;
     border-radius: 50%;
-    margin: 5px;
-    text-align: center;
     cursor: pointer;
 }
-.red { background-color: rgb(247, 42, 42); }
-.yellow { background-color: rgb(240, 236, 5); }
-.green { background-color: rgb(40, 226, 3); }
-.blue { background-color: rgb(7, 200, 235); }
-.selected { border: 2px solid black; }
 
+.red { background-color: red; }
+.yellow { background-color: yellow; }
+.green { background-color: green; }
+.blue { background-color: blue; }
+.selected { border: 2px solid black; }

@@ -10,23 +10,43 @@
     <div id="roleSelection">
         <h1>Welcome to Lotto Simulator</h1>
         <h2>Please select your role</h2>
-        <button onclick="showUserInterface()">User</button>
-        <button onclick="showAdminInterface()">Admin</button>
+        <button onclick="showLoginInterface('user')">User</button>
+        <button onclick="showLoginInterface('admin')">Admin</button>
+    </div>
+
+    <div id="loginForm" style="display: none;">
+        <h1>Login</h1>
+        <input type="text" id="username" placeholder="Username">
+        <input type="password" id="password" placeholder="Password">
+        <button onclick="login()">Login</button>
+        <button onclick="showRoleSelection()">Back to Role Selection</button>
     </div>
 
     <div id="userDashboard" style="display: none;">
         <h1>User Dashboard - Lotto Simulator</h1>
-        <div id="numbers">
-            <!-- Number selection interface -->
+        <div id="numberSelection">
+            <h2>Select 6 numbers from 1 to 52</h2>
+            <div id="numbers"></div>
+            <button onclick="submitNumbers()">Submit Numbers</button>
         </div>
-        <button onclick="submitNumbers()">Submit Numbers</button>
-        <div id="ticketInfo">
-            <!-- Ticket information display -->
+        <div id="boardSelection" style="display: none;">
+            <h2>Select number of boards (1-10)</h2>
+            <input type="number" id="boardCount" min="1" max="10" value="1">
+            <button onclick="generateBoards()">Generate Boards</button>
         </div>
-        <button onclick="showRoleSelection()">↶</button>
+        <div id="ticketInfo"></div>
+        <button onclick="showRoleSelection()">Back to Role Selection</button>
+    </div>
+
+    <div id="adminDashboard" style="display: none;">
+        <h1>Admin Dashboard - Lotto Simulator</h1>
+        <button onclick="simulateDraw()">Simulate Draw</button>
+        <div id="drawResults"></div>
+        <button onclick="showRoleSelection()">Back to Role Selection</button>
     </div>
 
     <script src="main.js"></script>
     <script src="user.js"></script>
+    <script src="admin.js"></script>
 </body>
 </html>
