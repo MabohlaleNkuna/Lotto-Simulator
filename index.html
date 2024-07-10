@@ -24,17 +24,13 @@
 
     <div id="userDashboard" style="display: none;">
         <h1>User Dashboard - Lotto Simulator</h1>
-        <div id="numberSelection">
-            <h2>Select 6 numbers from 1 to 52</h2>
-            <div id="numbers"></div>
-            <button onclick="submitNumbers()">Submit Numbers</button>
-        </div>
-        <div id="boardSelection" style="display: none;">
+        <div id="boardSelection">
             <h2>Select number of boards (1-10)</h2>
             <input type="number" id="boardCount" min="1" max="10" value="1">
             <button onclick="generateBoards()">Generate Boards</button>
         </div>
-        <div id="ticketInfo"></div>
+        <div id="boardContainer"></div>
+        <button onclick="submitBoards()">Submit Boards</button>
         <button onclick="showRoleSelection()">Back to Role Selection</button>
     </div>
 
