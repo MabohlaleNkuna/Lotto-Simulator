@@ -7,14 +7,14 @@
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <div id="roleSelection" class="container">
+    <div class="container" id="roleSelection">
         <h1>Welcome to Lotto Simulator</h1>
         <h2>Please select your role</h2>
         <button onclick="showLoginInterface('user')">User</button>
         <button onclick="showLoginInterface('admin')">Admin</button>
     </div>
 
-    <div id="loginForm" class="container" style="display: none;">
+    <div class="container" id="loginForm">
         <h1>Login</h1>
         <input type="text" id="username" placeholder="Username">
         <input type="password" id="password" placeholder="Password">
@@ -22,7 +22,7 @@
         <button onclick="showRoleSelection()">Back to Role Selection</button>
     </div>
 
-    <div id="userDashboard" class="container" style="display: none;">
+    <div class="container" id="userDashboard">
         <h1>User Dashboard - Lotto Simulator</h1>
         <div id="boardSelection">
             <h2>Select number of boards (1-10)</h2>
@@ -31,18 +31,17 @@
         </div>
         <div id="boardContainer"></div>
         <button onclick="submitBoards()">Submit Boards</button>
-        <button onclick="showRoleSelection()">Back to Role Selection</button>
         <div id="ticketContainer" class="tickets-container"></div>
-        <button onclick="checkNotifications()">Check Notifications</button>
+        <button onclick="showRoleSelection()">Back to Role Selection</button>
     </div>
 
-    <div id="adminDashboard" class="container" style="display: none;">
+    <div class="container" id="adminDashboard">
         <h1>Admin Dashboard - Lotto Simulator</h1>
         <button onclick="simulateDraw()">Simulate Draw</button>
         <div id="drawResults" class="draw-results"></div>
         <button onclick="showRoleSelection()">Back to Role Selection</button>
     </div>
-
+    
     <script src="main.js"></script>
     <script src="user.js"></script>
     <script src="admin.js"></script>
