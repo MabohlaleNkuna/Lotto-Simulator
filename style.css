@@ -7,27 +7,33 @@ body {
     justify-content: center;
     align-items: flex-start;
     height: 100vh;
-    padding-top: 50px; /* Increased padding to prevent cutting off the top */
+    padding-top: 50px; 
+    background-image: url('assets/lotto1.avif');
+    background-size: cover;
+    background-repeat: no-repeat;
 }
 
 .container {
-    background-color: #fff;
+    background-color: transparent;
     padding: 20px;
     border-radius: 10px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
     text-align: center;
-    max-width: 800px; /* Increased width to accommodate 3 boards per row */
+    max-width: 800px; 
     width: 100%;
     display: none;
     margin-top: 20px;
+    
 }
 
 .container h1 {
-    color: #333;
+    color:rgb(3, 96, 146);
+    font-weight: bold;
 }
 
 .container h2 {
-    color: #666;
+    color:rgb(3, 96, 146);
+    font-weight: bold;
 }
 
 .container button {
@@ -113,4 +119,24 @@ body {
     max-height: calc(100vh - 40px);
     overflow-y: auto;
     padding-top: 20px;
+}
+
+.numboards{
+    background-color: rgb(234, 233, 233);
+    border-radius: 5px;
+    width:100px;
+    height: 30px;
+}
+#password{
+    background-color: rgb(234, 233, 233);
+    border-radius: 5px;
+    width:100px;
+    height: 30px;
+}
+
+#username{
+    background-color: rgb(234, 233, 233);
+    border-radius: 5px;
+    width:100px;
+    height: 30px;
 }

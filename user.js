@@ -6,37 +6,52 @@ function generateBoards() {
     const boardContainer = document.getElementById('boardContainer');
     boardContainer.innerHTML = '';
 
-    if (boardCount >= 1 && boardCount <= 10) {
-        localStorage.setItem('boardCount', boardCount.toString());
-        alert(`You have chosen ${boardCount} board(s)`);
+    // Initialize the boards array
+    for (let i = 0; i < boardCount; i++) {
+        boards[i] = { selectedNumbers: [] };
+    }
 
-        for (let i = 0; i < boardCount; i++) {
-            const boardDiv = document.createElement('div');
-            boardDiv.className = 'board';
+    for (let i = 0; i < boardCount; i++) {
+        const boardDiv = document.createElement('div');
+        boardDiv.className = 'board';
 
-            for (let j = 1; j <= 52; j++) {
-                const numberElement = document.createElement('div');
-                numberElement.className = 'number';
-                numberElement.textContent = j;
-                numberElement.onclick = () => selectNumber(i, j);
-                boardDiv.appendChild(numberElement);
+        for (let j = 1; j <= 52; j++) {
+            const numberElement = document.createElement('div');
+            numberElement.className = 'number';
+
+            // Assign color classes based on number ranges
+            if (j >= 1 && j <= 13) {
+                numberElement.classList.add('red');
+            } else if (j >= 14 && j <= 25) {
+                numberElement.classList.add('yellow');
+            } else if (j >= 26 && j <= 37) {
+                numberElement.classList.add('green');
+            } else {
+                numberElement.classList.add('blue');
             }
 
-            boards.push({ id: i, selectedNumbers: [] });
-            boardContainer.appendChild(boardDiv);
+            numberElement.textContent = j;
+
+            // Add click event listener to toggle the 'selected' class
+            numberElement.addEventListener('click', function() {
+                selectNumber(i, j);
+                updateNumberSelection(i);
+            });
+
+            boardDiv.appendChild(numberElement);
         }
-    } else {
-        alert('Please select a valid number of boards between 1 and 10');
+
+        boardContainer.appendChild(boardDiv);
     }
 }
 
 function selectNumber(boardIndex, number) {
     const board = boards[boardIndex];
-
+    console.log(board.length);
     if (board.selectedNumbers.includes(number)) {
         board.selectedNumbers = board.selectedNumbers.filter(num => num !== number);
     } else {
-        if (board.selectedNumbers.length < maxNumbers) {
+        if (board.selectedNumbers.length <= maxNumbers  || board.selectedNumbers.length > 0 ) {
             board.selectedNumbers.push(number);
         } else {
             alert('You can only select 6 numbers on this board');
